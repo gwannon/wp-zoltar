@@ -1,3 +1,3 @@
 # wp-zoltar
 
-Imágenes por @ainagarate
+Imágenes svg diseñadas por @ainagarate
