@@ -6,7 +6,7 @@ Con este plugin de wordPress mediante un shortcode puedes montar un Adivino Zolt
 
 Ejemplo de uso del shortcode:
 
-```[zoltar color="#00ff00"]Texto fortuna 1|Texto fortuna 2|...|Texto fortuna 10[/zoltar]```
+```[zoltar main-color="#00ff00" secondary-color="#0000ff"]Texto fortuna 1|Texto fortuna 2|...|Texto fortuna 10[/zoltar]```
 
 Imágenes .svg excelentemente diseñadas por [Ainara Garate](https://ainaragarate.es/).
 

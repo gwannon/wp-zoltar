@@ -20,7 +20,6 @@
 function wpZoltarShortcode($params = array(), $content = null) {
   global $post;
   ob_start(); ?> 
-
   <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
   <style>
     #zoltar {
@@ -28,7 +27,8 @@ function wpZoltarShortcode($params = array(), $content = null) {
       position: relative;
       margin: auto;
       --animation-duration: 1s;
-      --main-color: <?=( isset($params['color']) && $params['color'] !='' ? $params['color'] : '#008aab');?>;
+      --main-color: <?=( isset($params['main-color']) && $params['main-color'] !='' ? $params['main-color'] : '#008aab');?>;
+      --secondary-color: <?=( isset($params['secondary-color']) && $params['secondary-color'] !='' ? $params['secondary-color'] : '#fdd756');?>;
     }
 
     /* ----------- Color --------------- */
@@ -39,6 +39,12 @@ function wpZoltarShortcode($params = array(), $content = null) {
     #zoltar .tarjeta-cls-1,
     #zoltar .tarjeta-cls-2 {
       fill: var(--main-color);
+    }
+
+    #zoltar .zoltar-cls-2,
+    #zoltar .zoltar-cls-6,
+    #zoltar .zoltar-cls-7 {
+      fill: var(--secondary-color);
     }
 
     #zoltar .tarjeta-cls-2 {
