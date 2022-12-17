@@ -22,12 +22,27 @@ function wpZoltarShortcode($params = array(), $content = null) {
   ob_start(); ?> 
 
   <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
-  <?php /* <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script> */ ?>
   <style>
     #zoltar {
       max-width: 600px;
       position: relative;
       margin: auto;
+      --animation-duration: 1s;
+      --main-color: <?=( isset($params['color']) && $params['color'] !='' ? $params['color'] : '#008aab');?>;
+    }
+
+    /* ----------- Color --------------- */
+    #zoltar .zoltar-cls-10,
+    #zoltar .zoltar-cls-11,
+    #zoltar .zoltar-cls-12,
+    #zoltar .zoltar-cls-13,
+    #zoltar .tarjeta-cls-1,
+    #zoltar .tarjeta-cls-2 {
+      fill: var(--main-color);
+    }
+
+    #zoltar .tarjeta-cls-2 {
+      stroke: var(--main-color);
     }
 
     /* ----------- Boca --------------- */
@@ -43,20 +58,16 @@ function wpZoltarShortcode($params = array(), $content = null) {
     }
 
     @keyframes openmouth {
-      to {
-        top: 55%;
-      }
+      to { top: 55%; }
     }
 
     /* ----------- Ojos --------------- */
     #zoltar.start .eyes {
-      animation: glowingeyes 1.5s infinite alternate-reverse;
+      animation: glowingeyes calc(var(--animation-duration) * 1.5) infinite alternate-reverse;
     }
 
     @keyframes glowingeyes {
-      to {
-        fill: #fff;
-      }
+      to { fill: #fff; }
     }
 
     /* ----------- Tobogan --------------- */
@@ -66,7 +77,6 @@ function wpZoltarShortcode($params = array(), $content = null) {
       top: 32.3%;
       right: -1.5%;
       z-index: 10;
-      /*transform: rotate(6deg);*/
     }
 
     /* ----------- Botón --------------- */
@@ -80,18 +90,16 @@ function wpZoltarShortcode($params = array(), $content = null) {
     }
 
     #boton .cls-boton-1 {
-      animation: glowingbutton 1s infinite alternate;
+      animation: glowingbutton var(--animation-duration) infinite alternate;
     }
 
     #boton.off .cls-boton-1 {
       fill: #8c2333;
-      animation none;
+      animation: none;
     }
 
     @keyframes glowingbutton {
-      to {
-        fill: #8c2333;
-      }
+      to { fill: #8c2333; }
     }
 
     /* ----------- Moneda --------------- */
@@ -100,7 +108,6 @@ function wpZoltarShortcode($params = array(), $content = null) {
       position: absolute;
       top: 30%;
       right: 0%;
-      --animation-duration: 1s;
     }
 
     #moneda.start {
@@ -111,49 +118,37 @@ function wpZoltarShortcode($params = array(), $content = null) {
     }
 
     @keyframes movex {
-      to {
-        right: 47%;
-      }
+      to { right: 47%; }
     }
 
     @keyframes movey {
-      to {
-        top: 53%;
-      }
+      to { top: 53%; }
     }
 
     @keyframes rotating {
-      to {
-        transform: rotate(-360deg);
-      }
+      to { transform: rotate(-360deg); }
     }
 
     @keyframes shrink {
-      to {
-        width: 3%;
-      }
+      to { width: 3%; }
     }
 
     /* ----------- Explosión --------------- */
     #explosion {
       width: 28%;
-    top: 46%;
-    right: 35%;
-    position: absolute;
+      top: 46%;
+      right: 35%;
+      position: absolute;
       opacity: 0;
     }
 
     #explosion.clink {
-      animation: fadeinexplosion 1s linear
+      animation: fadeinexplosion var(--animation-duration) linear;
     }
 
     @keyframes fadeinexplosion {
-      30% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 1;
-      }
+      30% { opacity: 1; }
+      100% { opacity: 1; }
     }
 
     /* ----------- Marcador --------------- */
@@ -167,9 +162,7 @@ function wpZoltarShortcode($params = array(), $content = null) {
     }
 
     @media (min-width: 600px) {
-      #marcador {
-        font-size: 30px;
-      }
+      #marcador { font-size: 30px; }
     }
 
     /* ----------- Tarjeta --------------- */
@@ -183,14 +176,12 @@ function wpZoltarShortcode($params = array(), $content = null) {
     }
 
     #tarjeta.start {
-      animation: rotatingcard 0.5s 1 linear forwards,
-      enbiggencard 0.5s 1 linear forwards;
+      animation: rotatingcard calc(var(--animation-duration) * 0.5) 1 linear forwards,
+      enbiggencard calc(var(--animation-duration) * 0.5) 1 linear forwards;
     }
 
     @keyframes rotatingcard {
-      to {
-        transform: rotate(-360deg);
-      }
+      to { transform: rotate(-360deg); }
     }
 
     @keyframes enbiggencard {
@@ -218,7 +209,7 @@ function wpZoltarShortcode($params = array(), $content = null) {
       font-size: 30px;
       opacity: 0;
       font-family: 'Aladin', cursive;
-      color: #008aab;
+      color: var(--main-color);
       line-height: 110%;
       padding: 10%;
     }
@@ -230,14 +221,12 @@ function wpZoltarShortcode($params = array(), $content = null) {
     }
 
     #tarjeta.start > div > p {
-      animation: showtext 0.2s 1 linear forwards;
-      animation-delay: 0.5s;
+      animation: showtext calc(var(--animation-duration) * 0.2) 1 linear forwards;
+      animation-delay: calc(var(--animation-duration) * 0.5);
     }
 
     @keyframes showtext {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
   </style>
   <div id="zoltar" class="start">
@@ -251,51 +240,54 @@ function wpZoltarShortcode($params = array(), $content = null) {
     <div id="explosion"><?php echo file_get_contents(WP_PLUGIN_DIR . "/wp-zoltar/piezas/explosion.svg"); ?></div>
   </div>
   <script>
-    var fortunes = [
-      <?php echo "'".str_replace("|", "',\n'", $content)."'"; ?>
-    ];
-    var current = 0;
-    const gua = new Audio("<?php echo plugin_dir_url(__FILE__); ?>piezas/gua-gua-gua.mp3" );
-    const monedarodando = new Audio("<?php echo plugin_dir_url(__FILE__); ?>piezas/moneda.mp3" );
-    const exito = new Audio("<?php echo plugin_dir_url(__FILE__); ?>piezas/exito.mp3" );
-    const metal = new Audio("<?php echo plugin_dir_url(__FILE__); ?>piezas/metal.mp3" );
-    jQuery("#boton").click(function() {
-      if(current < 3) {
-        monedarodando.play();        
-        jQuery("#moneda").addClass("start");
-        jQuery("#explosion").removeClass("clink");
-        var height = jQuery("#zoltar").outerHeight();
-        setTimeout(function(){
-          jQuery("#moneda").removeClass("start");
-          var top = parseInt(jQuery("#boca").css("top"));
-          var percent = top * 100 / height;
-          if (percent > 54) { //
-            var rand = Math.floor(Math.random() * fortunes.length);
-            exito.play();
-            jQuery("#tarjeta > div > p").html(fortunes[rand]);
-            jQuery("#tarjeta").addClass("start");
-            current = 3;
-            jQuery("#marcador").html("x0");
-          } else  {
-            current++;
-            var marcador = 3 - current;
-            jQuery("#marcador").html("x" + marcador);
-            if(current < 3) {
-              metal.play();
-              jQuery("#explosion").addClass("clink");
-            } else if(current == 3) {
-              jQuery("#boca").removeClass("start");
-              jQuery("#zoltar").removeClass("start");
-              jQuery("#boton").addClass("off");
-
-              gua.play();
+    jQuery( document ).ready(function() {
+      var fortunes = [
+        <?php echo "'".str_replace("|", "',\n'", $content)."'"; ?>
+      ];
+      var marcador = 3;
+      var current = 0;
+      const gua = new Audio("<?php echo plugin_dir_url(__FILE__); ?>piezas/gua-gua-gua.mp3" );
+      const monedarodando = new Audio("<?php echo plugin_dir_url(__FILE__); ?>piezas/moneda.mp3" );
+      const exito = new Audio("<?php echo plugin_dir_url(__FILE__); ?>piezas/exito.mp3" );
+      const metal = new Audio("<?php echo plugin_dir_url(__FILE__); ?>piezas/metal.mp3" );
+      jQuery("#boton").click(function() {
+        if(current < 3) {
+          monedarodando.play();        
+          jQuery("#moneda").addClass("start");
+          jQuery("#explosion").removeClass("clink");
+          let height = jQuery("#zoltar").outerHeight();
+          setTimeout(function(){
+            jQuery("#moneda").removeClass("start");
+            let percent = parseInt(jQuery("#boca").css("top")) * 100 / height;
+            if (percent > 54) { //
+              let rand = Math.floor(Math.random() * fortunes.length);
+              current = 3;
+              jQuery("#tarjeta > div > p").html(fortunes[rand]);
+              jQuery("#tarjeta").addClass("start");
+              jQuery("#marcador").html("x0");
+              exito.play();
+            } else  {
+              current++;
+              marcador--;
+              jQuery("#marcador").html("x" + marcador);
+              if(current < 3) {
+                jQuery("#explosion").addClass("clink");
+                metal.play();
+              } else if(current == 3) {
+                jQuery("#explosion").addClass("clink");
+                metal.play();
+                setTimeout(function(){
+                  jQuery("#boca,#zoltar").removeClass("start");
+                  jQuery("#boton").addClass("off");
+                  gua.play();
+                }, 1000);
+              }
             }
-          }
-        }, 1000);
-      }
+          }, 1000);
+        }
+      });
     });
   </script>
-<?php $html = ob_get_clean(); 
-  return $html;
+  <?php return ob_get_clean();
 }
 add_shortcode('zoltar', 'wpZoltarShortcode');
