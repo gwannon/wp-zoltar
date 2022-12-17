@@ -15,3 +15,7 @@ Sonidos de varias fuentes:
 * https://www.myinstants.com/ gua-gua-gua.mp3
 * https://www.soundjay.com/ moneda.mp3
 * https://pixabay.com/sound-effects/success-fanfare-trumpets-6185/ exito.mp3
+
+Ver ejemplo:
+
+https://codepen.io/gwannon/pen/OJwLwyW
