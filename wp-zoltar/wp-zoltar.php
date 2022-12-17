@@ -212,7 +212,7 @@ function wpZoltarShortcode($params = array(), $content = null) {
 
     #tarjeta > div > p {
       text-align: center;
-      font-size: 30px;
+      font-size: 25px;
       opacity: 0;
       font-family: 'Aladin', cursive;
       color: var(--main-color);
@@ -222,7 +222,13 @@ function wpZoltarShortcode($params = array(), $content = null) {
 
     @media (min-width: 600px) {
       #tarjeta > div > p {
-        font-size: 40px;
+        font-size: 30px;
+      }
+    }
+
+    @media (min-width: 950px) {
+      #tarjeta > div > p {
+        font-size: 35px;
       }
     }
 
