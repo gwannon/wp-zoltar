@@ -240,6 +240,35 @@ function wpZoltarShortcode($params = array(), $content = null) {
     @keyframes showtext {
       to { opacity: 1; }
     }
+
+    /* ----------- Probar otra vez --------------- */
+    #probarotravez {
+      --secondary-color: <?=( isset($params['secondary-color']) && $params['secondary-color'] !='' ? $params['secondary-color'] : '#fdd756');?>;
+      text-align: center;
+      font-size: 58px;
+      opacity: 0;
+      font-family: 'Aladin', cursive;
+      color: var(--secondary-color);
+      line-height: 110%;
+      cursor: pointer;
+      border: 3px solid var(--secondary-color);
+      padding: 10px;
+      margin: 0px 9px;
+      border-radius: 10px;
+      transition: opacity 0.3s, background 0.3s;
+      visibility: hidden;
+    }
+
+    #probarotravez:hover { 
+      color: #000;
+      background-color: var(--secondary-color); 
+    }
+
+    #probarotravez.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
   </style>
   <div id="zoltar" class="start">
     <?php echo file_get_contents(WP_PLUGIN_DIR . "/wp-zoltar/piezas/zoltar.svg"); ?>
@@ -251,6 +280,7 @@ function wpZoltarShortcode($params = array(), $content = null) {
     <div id="marcador">x3</div>
     <div id="explosion"><?php echo file_get_contents(WP_PLUGIN_DIR . "/wp-zoltar/piezas/explosion.svg"); ?></div>
   </div>
+  <div id="probarotravez">Probar otra vez</div>
   <script>
     jQuery( document ).ready(function() {
       var fortunes = [
@@ -277,6 +307,7 @@ function wpZoltarShortcode($params = array(), $content = null) {
               jQuery("#tarjeta > div > p").html(fortunes[rand]);
               jQuery("#tarjeta").addClass("start");
               jQuery("#marcador").html("x0");
+              jQuery("#probarotravez").addClass("show");
               exito.play();
             } else  {
               current++;
@@ -291,12 +322,16 @@ function wpZoltarShortcode($params = array(), $content = null) {
                 setTimeout(function(){
                   jQuery("#boca,#zoltar").removeClass("start");
                   jQuery("#boton").addClass("off");
+                  jQuery("#probarotravez").addClass("show");
                   gua.play();
                 }, 1000);
               }
             }
           }, 1000);
         }
+      });
+      jQuery("#probarotravez").click(function() {
+        window.location.reload();
       });
     });
   </script>
