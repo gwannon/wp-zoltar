@@ -253,10 +253,11 @@ function wpZoltarShortcode($params = array(), $content = null) {
       cursor: pointer;
       border: 3px solid var(--secondary-color);
       padding: 10px;
-      margin: 0px 9px;
+      margin: 0px auto;
       border-radius: 10px;
       transition: opacity 0.3s, background 0.3s;
       visibility: hidden;
+      max-width: 560px;
     }
 
     #probarotravez:hover { 
